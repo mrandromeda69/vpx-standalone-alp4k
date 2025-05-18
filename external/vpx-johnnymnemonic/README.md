@@ -2,32 +2,32 @@
 
 ![Table Preview](../../images/vpx-johnnymnemonic.png)
 
-Authors: [drakkon](https://vpuniverse.com/profile/51568-drakkon/)  
-Version: 1.0  
-Download: [VP Universe](https://vpuniverse.com/files/file/11964-johnny-mnemonic-williams-1995-drakkon-mod-10/)
+---
 
-DirectB2S
+## Files
+| File Type | Link | Version | Author | 
+|-----------|--------|----------|--------------|
+| **VPX** | [VPForums](https://www.vpforums.org/index.php?app=downloads&showfile=15289) | 2.1 | [bigus1](https://www.vpforums.org/index.php?showuser=107629) |
+| **ROM** | [VPForums](https://www.vpforums.org/index.php?app=downloads&showfile=1270) | N/A | N/A |
 
-Authors: [hauntfreaks](https://vpuniverse.com/profile/5216-hauntfreaks/)  
-Version: 1.0  
-Download: [VP Universe](https://vpuniverse.com/files/file/13622-johnny-mnemonic-williams-1995-b2s-with-full-dmd/)
+**Tested by:** [Reboot & Bla1ze]
 
-ROM
-
-Download: [VP Forums](https://www.vpforums.org/index.php?app=downloads&showfile=1270)
+---
 
 ## Status 
-
 Minimum VPX Standalone build: 10.8.0-1989-a764013
 | Playfield | Controls | Backglass | DMD | ROM Required | FPS | 
 |-----------|----------|-----------|-----|--------------|-----|
-| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | 41 |
+| :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: | 60 |
+
+---
 
 ## Instructions
 
-- Copy the contents of this repo folder to your USB drive
-- Add your personalized launcher.elf and rename it to vpx-johnnymnemonic.elf
-- Download the table and directb2s versions listed above and copy them into this folder
-- Make sure (.vpx), (.directb2s), and (.ini) files are all named the same
-- Place ROM zip file into vpx-johnnymnemonic/pinmame/roms folder. DO NOT UNZIP!
+- Install this table through the Table Manager, using the `Add Table` > `Manual` page
+- If you need help, more infomation found on the wiki: [TM - Add Table - Manual](https://github.com/LegendsUnchained/vpx-standalone-alp4k/wiki/%5B04%5D-%F0%9F%A7%A1-TM-%E2%80%90-Other-Features#add-table---manual)
+- If the table requires any additional files/steps, click `GO TO TABLE` after adding, and the TM will open to the relevant table folder.
+- Copy `backglass.png` to `vpx-johnnymnemonic`
+- Glove forward and back are set to the left and right nudge buttons.
+- "Hit me!"
 

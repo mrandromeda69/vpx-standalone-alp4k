@@ -24,13 +24,31 @@
 
 ---
 
+<br>
+
+<table>
+  <tr>
+    <td style="background-color: #FFDDDD; padding: 0; border-left: 4px solid #FF0000;">
+      <div style="padding: 8px 12px; background-color: #FFCCCB; font-weight: bold;font-size: 20px;">
+        <strong>⚠️ WARNING ⚠️</strong>
+      </div>
+      <div style="padding: 12px 12px 12px 12px;">
+        Manually added puppacks are not supported by the VPXS 4KP team<br>
+		We will not be able to help you diagnose issues until this puppack is in the Wizard<br>
+		You can however find a guide here on the wiki to help you install it yourself: <a href="https://github.com/LegendsUnchained/vpx-standalone-alp4k/wiki/%5B08%5D-%E2%9D%A4%EF%B8%8F-Pup-Pack-%E2%80%90-Manual-Install">❤️ Pup Pack ‐ Manual Install</a>
+      </div>
+    </td>
+  </tr>
+</table>
+
 ## Instructions
-- Copy the contents of this repo folder to your USB drive
-- Add your personalized launcher.elf and rename it to `vpx-gunship.elf`
-- Download from the table link the files: `GUNSHIP.vpx`, `Gunshippuppack.zip` and `MEDIA-pack.zip`
-- Copy the table `GUNSHIP.vpx` into `vpx-gunship`
-- Make sure `(.vpx)` `(.vbs)` and `(.ini)` are all named the same.
+
+- Install this table through the Table Manager, using the `Add Table` > `Manual` page
+- If you need help, more infomation found on the wiki: [TM - Add Table - Manual](https://github.com/LegendsUnchained/vpx-standalone-alp4k/wiki/%5B04%5D-%F0%9F%A7%A1-TM-%E2%80%90-Other-Features#add-table---manual)
+- If the table requires any additional files/steps, click `GO TO TABLE` after adding, and the TM will open to the relevant table folder.
+- Download `MEDIA-pack.zip`
 - Extract from the `MEDIA-pack.zip` the rom file `lostwrld.zip` and place the zip file in `vpx-gunship/pinmame/roms`
 - Create the folder `pupvideos` and extract from `Gunshippuppack.zip` the `Gunship` folder into `pupvideos`.
 - Unzip the `use_these_pup_files.zip` and place them inside the `pupvideos/Gunship` folder, and overwrite files if prompted.
 - "Taste Like Venom" - GUNSHIP
+
