@@ -7,7 +7,6 @@ import vpsdb
 
 from pathlib import Path
 
-
 def check_bundled(meta):
     """Checks if bundled fields have associated notes.
 
@@ -86,7 +85,6 @@ def check_bundled(meta):
                     print(f"ERROR: romNotes is not a string in table: {table}")
                     sys.exit(1)
 
-
 def check_checksums(meta):
     """Checks if the checksums are valid MD5 hashes.
 
@@ -98,13 +96,51 @@ def check_checksums(meta):
     """
     print("Checking checksums...")
     for table, table_meta in meta.items():
+        if "tableChecksum" not in table_meta or table_meta["tableChecksum"] is None:
+            print(f"ERROR: vpxChecksum field not found in table: {table}")
+            sys.exit(1)
+
+        if (
+            "backglassFileUrl" in table_meta
+            and table_meta["backglassFileUrl"] is not None
+        ) and (
+            "backglassChecksum" not in table_meta
+            or table_meta["backglassChecksum"] is None
+        ):
+            print(f"ERROR: backglassChecksum field not found in table: {table}")
+            sys.exit(1)
+
+        if (
+            "coloredROMFileUrl" in table_meta
+            and table_meta["coloredROMFileUrl"] is not None
+        ) and (
+            "coloredROMChecksum" not in table_meta
+            or table_meta["coloredROMChecksum"] is None
+        ):
+            print(f"ERROR: coloredROMChecksum field not found in table: {table}")
+            sys.exit(1)
+
+        if ("pupFileUrl" in table_meta and table_meta["pupFileUrl"] is not None) and (
+            "pupChecksum" not in table_meta or table_meta["pupChecksum"] is None
+        ):
+            print(f"ERROR: pupChecksum field not found in table: {table}")
+            sys.exit(1)
+
+        if ("romFileUrl" in table_meta and table_meta["romFileUrl"] is not None) and (
+            "romChecksum" not in table_meta or table_meta["romChecksum"] is None
+        ):
+            print(f"ERROR: romChecksum field not found in table: {table}")
+            sys.exit(1)
+
         for checksum_type in [
             "backglassChecksum",
             "coloredROMChecksum",
+            "pupChecksum",
             "romChecksum",
-            "vpxChecksum",
+            "tableChecksum",
         ]:
             if checksum_type not in table_meta or table_meta[checksum_type] is None:
+                # We checked if it's required above, so we can skip it here
                 continue
 
             if not isinstance(table_meta[checksum_type], str):
@@ -116,7 +152,6 @@ def check_checksums(meta):
                     f"ERROR: checksum {table_meta[checksum_type]} for {checksum_type} is not a valid MD5 hash in table: {table}"
                 )
                 sys.exit(1)
-
 
 def check_fixes(meta):
     """Checks if the applyFixes field is valid.
@@ -146,7 +181,6 @@ def check_fixes(meta):
                     print(f"Allowed fixes: {','.join(allowed_fixes)}")
                     sys.exit(1)
 
-
 def check_fps(meta):
     """Checks if the fps field is an integer."
 
@@ -166,7 +200,6 @@ def check_fps(meta):
             print(f"ERROR: fps is not an integer in table: {table}")
             sys.exit(1)
 
-
 def check_overrides(meta):
     """Checks if the overrides have versions defined.
 
@@ -184,20 +217,14 @@ def check_overrides(meta):
             sys.exit(1)
 
         if "romVPSId" in meta and meta["romVPSId"] is not None:
-            print(
-                f"ERROR: romVPSId is not allowed with romUrlOverride"
-            )
+            print(f"ERROR: romVPSId is not allowed with romUrlOverride")
             sys.exit(1)
 
-        if (
-            "romVersionOverride" not in meta
-            or meta["romVersionOverride"] is None
-        ):
+        if "romVersionOverride" not in meta or meta["romVersionOverride"] is None:
             print(
                 f"ERROR: romUrlOverride defined and romVersionOverride field not found"
             )
             sys.exit(1)
-
 
 def check_testers(meta):
     """Checks if the testers field is a list."
@@ -218,7 +245,6 @@ def check_testers(meta):
             print(f"ERROR: testers is not a list in table: {table}")
             sys.exit(1)
 
-
 def is_md5_hash(hash_string):
     """Checks if a string is a valid MD5 hash.
 
@@ -232,20 +258,41 @@ def is_md5_hash(hash_string):
 
 
 if __name__ == "__main__":
-    yml_file = sys.argv[1]
+    # Accept optional file paths on the command line. If none are provided,
+    # auto-discover all table.yml files under the external/ directory.
+    files = sys.argv[1:]
 
-    with open(yml_file, "r") as table_data:
-        table_yaml = yaml.safe_load(table_data)
+    if files:
+        # Keep only files that actually exist (skip deleted/missing paths)
+        files = [f for f in files if Path(f).is_file()]
+        if not files:
+            print("No valid table.yml files passed on the command line. Nothing to validate.")
+            sys.exit(0)
+    else:
+        base = Path("external")
+        files = [str(p) for p in base.rglob("table.yml")]
+        if not files:
+            print("No table.yml files found under external/ — skipping validation.")
+            sys.exit(0)
 
-    path = Path(yml_file)
-    folder_name = path.parent.name
-    print(f"Processing {folder_name}")
+    # For each discovered file, perform YAML-level checks (check_overrides)
+    for f in files:
+        try:
+            with open(f, "r") as table_data:
+                table_yaml = yaml.safe_load(table_data)
+        except Exception as e:
+            print(f"ERROR: Failed to load {f}: {e}")
+            sys.exit(1)
 
-    # Perform checks on the YAML file
-    check_overrides(table_yaml)
+        path = Path(f)
+        folder_name = path.parent.name
+        print(f"Processing {folder_name} ({f})")
 
-    # Perform checks on the rendered metadata
-    meta = vpsdb.get_table_meta([yml_file], warn_on_error=False)
+        # Perform checks on the YAML file content
+        check_overrides(table_yaml)
+
+    # Render metadata for all files in a single call, then run the meta-level checks
+    meta = vpsdb.get_table_meta(files, warn_on_error=False)
 
     check_bundled(meta)
     check_checksums(meta)
