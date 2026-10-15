@@ -16,7 +16,9 @@ tableVPSId: "_p1dYSBiWd"
 tagline: "Power to the users!"
 testers:
   - "mrandromeda"
-vpxChecksum: "4BAF2E9C30AD510D07E30C53061E2DC9"
+vpxChecksum:
+  - "4BAF2E9C30AD510D07E30C53061E2DC9"
+  - "E3BF7CDCC1673918F9949831191ED7FD"
 vpxVPSId: "OhE1dEJEEu"
 vpxArchiveFormat: "zip"
 vpxExtractExtra:
