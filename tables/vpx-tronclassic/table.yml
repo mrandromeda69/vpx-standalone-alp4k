@@ -18,6 +18,7 @@ testers:
   - "mrandromeda"
 vpxChecksum: "4BAF2E9C30AD510D07E30C53061E2DC9"
 vpxVPSId: "OhE1dEJEEu"
+vpxArchiveFormat: "zip"
 vpxExtractExtra:
   - "music"
 
