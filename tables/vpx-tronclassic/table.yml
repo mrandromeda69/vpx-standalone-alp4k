@@ -1,10 +1,10 @@
 ---
-tableNameOverride: "Tron Classic"
+tableNameOverride: "TRON Classic Neon"
 fps: 60
 pupArchiveFormat: "zip"
 pupArchiveRoot: "TRON-NEON"
 pupChecksum: "48185F865BA6D2AD9A5B959122C32CA8"
-pupNotes: "Download from the same table link 'TRON-NEON_PUP_2024-05-28.zip'"
+pupNotes: "Download from the table link 'TRON-NEON_PUP_2024-05-28.zip'"
 pupRequired: true
 pupBundled: true
 pupVersion: "TRON-NEON"
