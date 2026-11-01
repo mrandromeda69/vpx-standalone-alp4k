@@ -10412,7 +10412,7 @@ End Sub
 		GiLowerOn
 		End If
 		willskip = 0
-        FlasherEL002.opacity = 500
+        'FlasherEL002.opacity = 500
         FlasherMAXFlash.opacity = 0
         vecnaeyerite.Duration 0, 000, 0
         vecnaeyeleft.Duration 0, 000, 0
