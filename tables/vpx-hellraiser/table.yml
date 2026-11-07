@@ -4,8 +4,7 @@ backglassImageOverride: "https://virtualpinballspreadsheet.github.io/vps-db/img/
 fps: 60
 pupArchiveRoot: "Hellraiser1.0.1/HellRaiser"
 pupChecksum: "6DE77436C19D088D9E701E26CB57D138"
-pupFileUrl: >-
-  https://vpuniverse.com/files/file/11763-hellraiser/
+pupVPSId: "dx2X180guD"
 pupRequired: true
 pupVersion: "Hellraiser"
 pupArchiveFormat: "rar"
